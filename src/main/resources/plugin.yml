@@ -1,0 +1,4 @@
+name: ChangeMe
+version: '${project.version}'
+main: com.github.sympatischxerserverteam.changeme.Main
+api-version: '1.20'
