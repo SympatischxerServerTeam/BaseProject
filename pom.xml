@@ -14,6 +14,7 @@
     <properties>
         <java.version>11</java.version>
         <kotlin.version>1.9.0</kotlin.version>
+        <minecraft.version>1.20.1</minecraft.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -112,6 +113,34 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>fr.lehtto.maven.plugins</groupId>
+                <artifactId>servermc-maven-plugin</artifactId>
+                <version>0.1.0</version>
+                <configuration>
+                    <serverDirectory>${project.basedir}/run</serverDirectory>
+                    <mcVersion>${minecraft.version}</mcVersion>
+                    <eula>true</eula>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>server-install</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>install</goal>
+                            <goal>copy-plugin</goal>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>server-clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -142,7 +171,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.20.1-R0.1-SNAPSHOT</version>
+            <version>${minecraft.version}-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
